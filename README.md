@@ -3,7 +3,7 @@
 
 Integrated detection and classification system for coffee plant diseases using Deep Learning. Combines YOLOv8 for region detection and PavicNet-MCv2 for precise disease classification.
 
-> **Note:** This repository contains only the code and documentation. Datasets and trained models must be downloaded separately (see instructions below).
+> Note: This repository contains only the code and documentation. Datasets and trained models must be downloaded separately (see instructions below).
 
 ## 📋 Table of Contents
 
@@ -14,33 +14,32 @@ Integrated detection and classification system for coffee plant diseases using D
 - [Model Download](#-model-download)
 - [Usage](#-usage)
 - [Project Structure](#-project-structure)
-- [Training](#-training)
 - [Results](#-results)
 
 ## ✨ Features
 
-- 🔍 Automatic detection of coffee leaves using YOLOv8
-- 🎯 Precise classification of disease types with PavicNet-MCv2
-- 🚀 3 approaches: YOLO only, PavicNet only, or integrated pipeline
-- 📊 Detailed metrics with confusion matrices
-- 🖼️ Visualizations with bounding boxes and labels
-- ⚡ Batch processing of multiple images
+- 🔍 **Automatic detection** of coffee leaves using YOLOv8
+- 🎯 **Precise classification** of disease types with PavicNet-MCv2
+- 🚀 **3 approaches**: YOLO only, PavicNet only, or integrated pipeline
+- 📊 **Detailed metrics** with confusion matrices
+- 🖼️ **Visualizations** with bounding boxes and labels
+- ⚡ **Batch processing** of multiple images
 
 ## 🦠 Detected Diseases
 
 | Disease | Description |
 |---------|-------------|
-| 🍂 Coffee Rust (Roya) | Fungus causing yellow-orange spots |
-| 🕷️ Red Spider Mite | Mite that damages leaves |
-| 🔴 Cercospora | Circular spots with gray center |
-| 🐛 Leaf Miner (Bicho Mineiro) | Larva that perforates leaves |
-| ✅ Healthy | No disease signs |
+| 🍂 **Coffee Rust** (Roya) | Fungus causing yellow-orange spots |
+| 🕷️ **Red Spider Mite** | Mite that damages leaves |
+| 🔴 **Cercospora** | Circular spots with gray center |
+| 🐛 **Leaf Miner** (Bicho Mineiro) | Larva that perforates leaves |
+| ✅ **Healthy** | No disease signs |
 
 ## 🚀 Quick Start
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/your-username/coffee-disease-detection.git
+git clone ...
 cd coffee-disease-detection
 
 # 2. Create virtual environment
@@ -55,7 +54,7 @@ pip install -r requirements.txt
 # 5. Setup your dataset (see Dataset Setup section)
 
 # 6. Run a quick test
-python prueba.py
+python classification/prueba.py
 ```
 
 ## 📦 Installation
@@ -69,13 +68,13 @@ python prueba.py
 
 ### Step-by-step Installation
 
-1. **Clone the repository**
+1. Clone the repository
 ```bash
-git clone https://github.com/your-username/coffee-disease-detection.git
+git clone ...
 cd coffee-disease-detection
 ```
 
-2. **Create and activate virtual environment**
+2. Create and activate virtual environment
 ```bash
 python -m venv venv
 
@@ -93,89 +92,64 @@ pip install -r requirements.txt
 
 ## 📊 Dataset Setup
 
-## 📊 Dataset Download
+IMPORTANT: The dataset is NOT included in this repository, download here: https://drive.google.com/file/d/14vRtxCvQFc-qt2suqlvAwTx1f1J0xwvD/view?usp=sharing
 
-Download the dataset from [Releases](https://github.com/your-username/coffee-disease-detection/releases):
+### Required Directory Structure
 
-1. Go to Releases
-2. Download `dataset.zip` (1.2 GB)
-3. Extract in project root:
-````bash
-   unzip dataset.zip
-````
-
-#### For YOLO Training (Object Detection)
+After downloading/preparing your dataset, you should have:
 
 ```
-DATA/
-├── train/
-│   ├── images/          # Training images (.jpg)
-│   └── labels/          # YOLO annotations (.txt)
-├── valid/
-│   ├── images/          # Validation images
-│   └── labels/          # YOLO annotations
-├── test/
-│   ├── images/          # Test images
-│   └── labels/          # YOLO annotations
-└── data.yaml            # Dataset configuration
+coffee-disease-detection/
+├── DATA/                          # YOLO format dataset
+│   ├── train/
+│   │   ├── images/
+│   │   └── labels/
+│   ├── valid/
+│   │   ├── images/
+│   │   └── labels/
+│   ├── test/
+│   │   ├── images/
+│   │   └── labels/
+│   └── data.yaml
+│
+└── classification_dataset/        # Classification format
+    ├── train/
+    │   ├── rust/
+    │   ├── cercospora/
+    │   ├── leaf_miner/
+    │   └── healthy/
+    ├── valid/
+    └── test/
 ```
 
-**data.yaml example:**
-```yaml
-train: DATA/train/images
-val: DATA/valid/images
-test: DATA/test/images
+### How to Get Dataset
 
-nc: 4  # number of classes
-names: ['rust', 'cercospora', 'phoma', 'leaf_miner']
-```
+**Option 1: Download from Google Drive**
 
-#### For Classification Training
-
-```
-classification_dataset/
-├── train/
-│   ├── rust/           # Images of rust disease
-│   ├── cercospora/     # Images of cercospora
-│   ├── leaf_miner/     # Images of leaf miner
-│   └── healthy/        # Images of healthy leaves
-├── valid/
-│   ├── rust/
-│   ├── cercospora/
-│   ├── leaf_miner/
-│   └── healthy/
-└── test/
-    ├── rust/
-    ├── cercospora/
-    ├── leaf_miner/
-    └── healthy/
-```
-
-### Option 2: Download from Roboflow
+Dataset available at: [Download Link] (Contact author)
 
 ```bash
-# Edit dataset.py with your Roboflow API key
+# Download and extract
+# Place in project root directory
+```
+
+**Option 2: Use Your Own Images**
+
+Organize your images following the structure above. See [DATASET_INFO.md](DATASET_INFO.md) for details.
+
+**Option 3: Download from Roboflow**
+
+```bash
 python dataset.py
 ```
 
-### Option 3: Request Dataset
+(Requires Roboflow API key)
 
-The dataset used in this project is a custom collection. For access:
-- **Email:** your.email@example.com
-- **Note:** Dataset is ~2-5GB and contains 1,500+ annotated images
-
-### Convert YOLO Dataset to Classification Format
-
-If you have YOLO format data and want to train the classifier:
+### Convert YOLO to Classification Format
 
 ```bash
 python to_classification.py
 ```
-
-This script will:
-1. Read YOLO annotations
-2. Crop detected regions
-3. Organize into class folders
 
 ## 🤖 Model Download
 
@@ -187,33 +161,16 @@ Pre-trained models are available in **[GitHub Releases](https://github.com/your-
 2. Download:
    - `yolov8n.pt` (~6.3 MB) - Object detector
    - `pavicnet_mcv2.h5` (~6.3 MB) - Disease classifier
-3. Place them in the project root directory:
+3. Place them in the `models/` directory:
 
 ```
 coffee-disease-detection/
-├── yolov8n.pt          ← Place here
-├── pavicnet_mcv2.h5    ← Place here
-├── prueba.py
-└── ...
+├── models/
+│   ├── yolov8n.pt          ← Place here
+│   └── pavicnet_mcv2.h5    ← Place here
 ```
-
-### Alternative: Train Your Own Models
-
-See [Training](#-training) section below.
 
 ## 💻 Usage
-
-## Quick Test
-
-Test the classifier on a single image:
-
-```bash
-python prueba.py
-```
-
-To customize:
-1. Edit line with `img_path` variable
-2. Adjust `class_names` to match your classes
 
 ### Approach 1: YOLO Detection Only
 
@@ -229,20 +186,29 @@ python clasi.py
 
 ### Approach 2: PavicNet Classification Only
 
+Quick test:
+```bash
+python classification/prueba.py
+```
+
 Train classifier:
 ```bash
-python train_classification.py
+# Simple training
+python classification/training.py
+
+# Or full training with validation
+python classification/train_classification.py
 ```
 
-Evaluate:
+Evaluate model:
 ```bash
-python evaluate.py
-python confusion_matrix_test.py
+python classification/evaluate.py
+python classification/confusion_matrix_test.py
 ```
 
-Inference:
+Single image inference:
 ```bash
-python inference.py
+python classification/inference.py
 ```
 
 ### Approach 3: Integrated Pipeline (⭐ Recommended)
@@ -250,18 +216,18 @@ python inference.py
 Process images with the full pipeline (YOLO + PavicNet):
 
 ```bash
-python integrate_yolo_pavicnet.py \
-    --images_dir "path/to/images" \
-    --classifier_model "pavicnet_mcv2.h5" \
+python integration/integrate_yolo_pavicnet.py \
+    --images_dir "DATA/test/images" \
+    --classifier_model "models/pavicnet_mcv2.h5" \
     --output_dir "integration_results"
 ```
 
-**Batch processing:**
+Batch processing:
 ```bash
-python pipeline_batch.py
+python integration/pipeline_batch.py
 ```
 
-Results will be saved in `results_batch/` with:
+Results saved in `results_batch/` with:
 - Bounding boxes around leaves
 - Disease classification labels
 - Confidence scores
@@ -271,33 +237,45 @@ Results will be saved in `results_batch/` with:
 ```
 coffee-disease-detection/
 │
-├── 📄 Python Scripts (13 files)
-│   ├── trainingyolo.py              # Train YOLO detector
-│   ├── clasi.py                     # Crop detections
-│   ├── training.py                  # Train PavicNet (simple)
-│   ├── train_classification.py      # Train PavicNet (with validation)
-│   ├── evaluate.py                  # Evaluate classifier
-│   ├── inference.py                 # Single image inference
-│   ├── confusion_matrix_test.py     # Generate confusion matrix
-│   ├── prueba.py                    # Quick test script
-│   ├── integrate_yolo_pavicnet.py   # Integrated pipeline
-│   ├── pipeline_batch.py            # Batch processing
-│   ├── dataset.py                   # Download from Roboflow
-│   └── to_classification.py         # Convert YOLO to classification
+├── 📂 classification/              # Classification scripts
+│   ├── confusion_matrix_test.py   # Generate confusion matrix
+│   ├── evaluate.py                # Model evaluation
+│   ├── inference.py               # Single image inference
+│   ├── prueba.py                  # Quick test script
+│   ├── train_classification.py    # Full training pipeline
+│   └── training.py                # Simple training
 │
-├── 📄 Models (download separately)
-│   ├── yolov8n.pt                   # YOLO detector (6.3 MB)
-│   └── pavicnet_mcv2.h5             # PavicNet classifier (6.3 MB)
+├── 📂 integration/                 # Integrated pipeline
+│   ├── integrate_yolo_pavicnet.py # Full pipeline (YOLO + PavicNet)
+│   └── pipeline_batch.py          # Batch processing
 │
-├── 📂 DATA/                          # YOLO dataset (not in repo)
-├── 📂 classification_dataset/        # Classification dataset (not in repo)
-├── 📂 results_batch/                 # Output results (not in repo)
-├── 📂 integration_results/           # Pipeline outputs (not in repo)
+├── 📂 models/                      # Trained models (download separately)
+│   ├── yolov8n.pt                 # YOLO detector (6.3 MB)
+│   └── pavicnet_mcv2.h5           # PavicNet classifier (6.3 MB)
 │
-├── 📄 .gitignore                     # Git ignore rules
-├── 📄 README.md                      # This file
-├── 📄 requirements.txt               # Python dependencies
-└── 📄 LICENSE                        # MIT License
+├── 📂 integration_results/         # Pipeline outputs (not in repo)
+│   ├── crops/                     # Cropped leaf regions
+│   ├── overlays/                  # Annotated images
+│   ├── confusion_matrix.png
+│   └── predictions_summary.csv
+│
+├── 📂 DATA/                        # YOLO dataset (not in repo)
+├── 📂 classification_dataset/      # Classification dataset (not in repo)
+├── 📂 results_batch/               # Batch results (not in repo)
+├── 📂 runs/                        # Training logs (not in repo)
+├── 📂 roya_test/                   # Rust test data (not in repo)
+├── 📂 roya_train/                  # Rust train data (not in repo)
+├── 📂 roya_valid/                  # Rust validation data (not in repo)
+│
+├── clasi.py                        # Crop YOLO detections
+├── dataset.py                      # Download from Roboflow
+├── to_classification.py            # Convert YOLO to classification format
+├── trainingyolo.py                 # Train YOLO detector
+│
+├── .gitignore                      # Git ignore rules
+├── README.md                       # This file
+├── requirements.txt                # Python dependencies
+└── LICENSE                         # MIT License
 ```
 
 ## 🎓 Training
@@ -326,11 +304,17 @@ Results saved in: `runs/detect/train/`
 
 Requirements:
 - Classification dataset in `classification_dataset/` folder
-- Organized by class folders
 
-Command:
+Commands:
+
+Simple training:
 ```bash
-python train_classification.py
+python classification/training.py
+```
+
+Full training with validation:
+```bash
+python classification/train_classification.py
 ```
 
 Configuration:
@@ -340,7 +324,7 @@ Configuration:
 - Learning rate: 0.001
 - Early stopping: patience=20
 
-Model saved as: `pavicnet_mcv2.h5`
+Model saved as: `models/pavicnet_mcv2.h5`
 
 ### PavicNet-MCv2 Architecture
 
@@ -370,32 +354,45 @@ Dense(4) → Softmax
 |----------|----------|-------|----------|
 | YOLO Only | ~85% | ⚡⚡⚡ Fast | Quick field screening |
 | PavicNet Only | ~92% | ⚡⚡ Medium | Lab analysis (pre-cropped) |
-| **Integrated** | **~94%** | ⚡⚡ Medium | **Production use** |
+| Integrated | ~94% | ⚡⚡ Medium | **Production use** |
 
-### Outputs
+### Integrated Pipeline Outputs
 
-**Integrated Pipeline creates:**
-- `integration_results/crops/` - Cropped leaf regions
-- `integration_results/overlays/` - Annotated images
-- `integration_results/confusion_matrix.png` - Performance metrics
-- `integration_results/predictions_summary.csv` - Detailed results
+Results are saved in `integration_results/`:
+- **crops/** - Individual leaf detections
+- **overlays/** - Original images with annotations
+- **confusion_matrix.png** - Classification performance
+- **predictions_summary.csv** - Detailed results
 
-**Batch Processing creates:**
-- `results_batch/*.jpg` - Images with bounding boxes and labels
+Batch results in `results_batch/` with:
+- Bounding boxes around detected leaves
+- Disease classification labels
+- Confidence scores
 
 ## 🛠️ Customization
 
 ### Change Disease Classes
 
 Edit class names in these files:
-- `prueba.py` - Line ~8: `class_names = [...]`
-- `inference.py` - Line ~15: `class_names = [...]`
-- `pipeline_batch.py` - Line ~16: `class_names = [...]`
-- `integrate_yolo_pavicnet.py` - Lines 15-20: `label_mapping` and `class_names`
+- `classification/prueba.py` - Line ~8
+- `classification/inference.py` - Line ~15
+- `integration/pipeline_batch.py` - Line ~16
+- `integration/integrate_yolo_pavicnet.py` - Lines 15-20
 
-### Adjust Confidence Thresholds
+### Adjust Model Paths
 
-In `pipeline_batch.py` and `integrate_yolo_pavicnet.py`:
+Update paths in scripts:
+```python
+# YOLO model
+model = YOLO("models/yolov8n.pt")
+
+# PavicNet model
+classifier = load_model("models/pavicnet_mcv2.h5")
+```
+
+### Configure Confidence Thresholds
+
+In integration scripts:
 ```python
 CONF = 0.25  # Detection confidence
 IOU = 0.45   # IoU threshold
@@ -404,19 +401,19 @@ IOU = 0.45   # IoU threshold
 ## 🐛 Troubleshooting
 
 ### "Model file not found"
-Solution: Download models from Releases and place in project root
+**Solution:** Download models from Releases and place in `models/` directory
 
 ### "Dataset directory not found"
-Solution: Setup dataset as described in [Dataset Setup](#-dataset-setup)
+**Solution:** Setup dataset as described in [Dataset Setup](#-dataset-setup)
 
 ### "CUDA out of memory"
-**Solution:** Reduce batch size:
+**Solution:** Reduce batch size in training scripts:
 ```python
 batch_size = 8  # Reduce from 16
 ```
 
 ### Import errors
-Solution: Install all dependencies:
+**Solution:** Install all dependencies:
 ```bash
 pip install -r requirements.txt
 ```
@@ -431,17 +428,25 @@ Contributions welcome! Please:
 4. Push to branch (`git push origin feature/AmazingFeature`)
 5. Open Pull Request
 
+## 📝 License
+
+MIT License - see [LICENSE](LICENSE) file for details.
+
 ## 📧 Contact
 
-Anderson Del Castillo - delcast2210@gmail.com
+Anderson Del Castillo
+mail - delcast2210@gmail.com
 linkedin - www.linkedin.com/in/anderson-sneider-del-castillo-criollo-12b987297
 
+Diego Hernandez 
+mail - hernandezdiegoalejandro35@gmail.com
+linkedin - www.linkedin.com/in/diego-hernandez-1827ab256
 
 ## 🙏 Acknowledgments
 
 - [Ultralytics YOLOv8](https://github.com/ultralytics/ultralytics)
 - [TensorFlow](https://www.tensorflow.org/)
-- Coffee farming community for domain expertise
+- Coffee farming community
 
 ---
 
