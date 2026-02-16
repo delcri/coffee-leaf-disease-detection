@@ -8,10 +8,8 @@ This project requires two types of datasets:
 
 ## Dataset Not Included
 
-⚠️ **Important:** The dataset is NOT included in this repository due to:
-- Large file size (2-5 GB)
-- Image licensing considerations
-- GitHub storage limitations
+⚠️ **Important:** The dataset download here:
+https://drive.google.com/file/d/14vRtxCvQFc-qt2suqlvAwTx1f1J0xwvD/view?usp=sharing 
 
 ## Required Dataset Structure
 
