@@ -1,0 +1,98 @@
+# ==========================================
+# Coffee Disease Detection - .gitignore
+# ==========================================
+
+# Python cache and compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.pyc
+.Python
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ==========================================
+# DATASETS - NEVER UPLOAD TO GIT
+# ==========================================
+# These folders are too large for Git
+DATA/
+classification_dataset/
+roya_test/
+roya_train/
+roya_valid/
+data/
+
+# ==========================================
+# RESULTS AND OUTPUTS - NEVER UPLOAD
+# ==========================================
+runs/
+results_batch/
+integration_results/
+outputs/
+logs/
+checkpoints/
+
+# ==========================================
+# MODELS - Use Git LFS or GitHub Releases
+# ==========================================
+# Uncomment these lines if NOT using Git LFS:
+# *.h5
+# *.hdf5
+# *.keras
+# *.pt
+# *.pth
+# *.weights
+
+# ==========================================
+# IMAGES AND VIDEOS - Too large
+# ==========================================
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.bmp
+*.tiff
+*.mp4
+*.avi
+*.mov
+
+# CSV files (often large)
+*.csv
+
+# Compressed files
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# ==========================================
+# System Files
+# ==========================================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Environment variables and secrets
+.env
+.env.local
+secrets.yaml
+config.local.yaml
+
+# Logs
+*.log
